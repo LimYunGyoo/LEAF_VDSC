@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using LEAF.VDSC.CORE.Services;
 using LEAF.VDSC.CORE.Dao;
 using LEAF.VDSC.CORE.Config;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace LEAF.VDSC.WEB
 {
@@ -66,6 +67,16 @@ namespace LEAF.VDSC.WEB
             );
 
             app.UseMvc();
+
+            // Reverse Proxy Setting >> For Nginx 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+            app.UseAuthentication();
+
+            
         }
     }
 }
