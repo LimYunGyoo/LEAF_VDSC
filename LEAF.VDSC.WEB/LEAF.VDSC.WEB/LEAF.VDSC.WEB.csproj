@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="App\" />
+    <Compile Remove="App\node_modules\**" />
+    <Content Remove="App\node_modules\**" />
+    <EmbeddedResource Remove="App\node_modules\**" />
+    <None Remove="App\node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
