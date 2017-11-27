@@ -1,6 +1,6 @@
 <template>
   <div>
-    <product-table getUrl="http://52.78.116.4:8000/api/search/tmon?discount="></product-table>
+    <product-table getUrl="/api/search/tmon?discount="></product-table>
   </div>
 </template>
 <script>
