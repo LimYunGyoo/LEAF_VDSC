@@ -35,10 +35,10 @@ namespace LEAF.VDSC.WEB
 
             /* Dependency Injection */
             // add service
-            services.AddTransient<IElandmallService, ElandmallService>();
-            services.AddTransient<IGmarketService, GmarketService>();
-            services.AddTransient<ITMonService, TMonService>();
-            services.AddTransient<IWemakepriceService, WemakepriceService>();
+            services.AddSingleton<IElandmallService, ElandmallService>();
+            services.AddSingleton<IGmarketService, GmarketService>();
+            services.AddSingleton<ITMonService, TMonService>();
+            services.AddSingleton<IWemakepriceService, WemakepriceService>();
 
             // add dao
             services.AddSingleton<IElandmallDao, ElandmallDao>();
