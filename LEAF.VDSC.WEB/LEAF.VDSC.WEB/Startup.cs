@@ -31,8 +31,7 @@ namespace LEAF.VDSC.WEB
 
             // Setup cors
             services.AddCors();
-
-
+                   
             /* Dependency Injection */
             // add service
             services.AddSingleton<IElandmallService, ElandmallService>();
@@ -59,6 +58,7 @@ namespace LEAF.VDSC.WEB
                 app.UseDeveloperExceptionPage();
             }
 
+            // Setup cors
             app.UseCors(builder =>
                 builder.AllowAnyHeader()
                        .AllowAnyMethod()
