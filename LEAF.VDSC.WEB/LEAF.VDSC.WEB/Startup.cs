@@ -12,6 +12,10 @@ using LEAF.VDSC.CORE.Services;
 using LEAF.VDSC.CORE.Dao;
 using LEAF.VDSC.CORE.Config;
 using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace LEAF.VDSC.WEB
 {
@@ -66,7 +70,7 @@ namespace LEAF.VDSC.WEB
                        .AllowCredentials()
             );
 
-            app.UseMvc();
+            
 
             // Reverse Proxy Setting >> For Nginx 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -74,6 +78,29 @@ namespace LEAF.VDSC.WEB
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
+
+            app.UseExceptionHandler(
+                 builder =>
+                 {
+                     builder.Run(
+                       async context =>
+                       {
+                           context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                           context.Response.ContentType = "application/json";
+
+                           var error = context.Features.Get<IExceptionHandlerFeature>();
+                           if (error != null)
+                           {
+                               var errorInfo = JsonConvert.SerializeObject(new { Message = error.Error.Message, StackTrace = error.Error.StackTrace,
+                                                                        InnerException = error.Error.InnerException, Source = error.Error.Source });
+                               await context.Response.WriteAsync(errorInfo);
+                           }
+                       });
+                 }
+            );
+
+
+            app.UseMvc();
             app.UseAuthentication();
 
             

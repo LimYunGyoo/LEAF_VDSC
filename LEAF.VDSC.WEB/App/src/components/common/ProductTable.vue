@@ -1,20 +1,15 @@
 <template>
   <div>
-
+    <select class="selectpicker" v-model="selected" @change="changeDiscount(selected)">
+      <option disabled value="">Please select one</option>
+      <option value="50">50%</option>
+      <option value="60">60%</option>
+      <option value="70">70%</option>
+      <option value="80">80%</option>
+      <option value="90">90%</option>
+    </select>
     <div id="table">
-      <div class="row selected">
-        <span class="cell col01">Discount</span>
-        <span class="cell col02">
-          <select class="selectpicker" v-model="selected" @change="changeDiscount(selected)">
-            <option disabled value="">Please select one</option>
-            <option value="50">50%</option>
-            <option value="60">60%</option>
-            <option value="70">70%</option>
-            <option value="80">80%</option>
-            <option value="90">90%</option>
-          </select>
-        </span>
-      </div>
+
       <div class="row header">
         <span class="cell col01">Discount</span>
         <span class="cell col02">Detail</span>
@@ -81,10 +76,6 @@
     display: table-cell;
     padding: 4px;
     border-bottom: 1px solid #DDD;
-  }
-
-  .cell>select {
-    width: 100%
   }
 
   .col01 {

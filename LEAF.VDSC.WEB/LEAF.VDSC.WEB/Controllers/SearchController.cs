@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LEAF.VDSC.CORE.Services;
+using LEAF.VDSC.CORE.Dao;
+using Microsoft.Extensions.Logging;
 
 namespace LEAF.VDSC.WEB.Controllers
 {
@@ -17,12 +19,18 @@ namespace LEAF.VDSC.WEB.Controllers
         ITMonService tmonService;
         IWemakepriceService wemakepriceService;
 
-        public SearchController(IElandmallService ElandmallService, IGmarketService GmarketService, ITMonService TMonService, IWemakepriceService WemakepriceService)
+        private readonly ILogger _logger;
+
+        public SearchController(IElandmallService ElandmallService, IGmarketService GmarketService,
+                                ITMonService TMonService, IWemakepriceService WemakepriceService,
+                                ILogger<SearchController> logger)
         {
             elandmallService = ElandmallService;
             gmarketService = GmarketService;
             tmonService = TMonService;
             wemakepriceService = WemakepriceService;
+
+            this._logger = logger;
         }
 
         [HttpGet("elandmall")]

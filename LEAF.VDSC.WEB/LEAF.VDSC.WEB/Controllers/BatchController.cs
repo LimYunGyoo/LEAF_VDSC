@@ -40,6 +40,7 @@ namespace LEAF.VDSC.WEB.Controllers
             catch (Exception e)
             {
                 error++;
+                Console.WriteLine(e);
             }
 
             // www.gmarket.co.kr
@@ -51,6 +52,7 @@ namespace LEAF.VDSC.WEB.Controllers
             catch (Exception e)
             {
                 error++;
+                Console.WriteLine(e);
             }
 
 
@@ -63,6 +65,7 @@ namespace LEAF.VDSC.WEB.Controllers
             catch (Exception e)
             {
                 error++;
+                Console.WriteLine(e);
             }
 
 
@@ -75,6 +78,7 @@ namespace LEAF.VDSC.WEB.Controllers
             catch (Exception e)
             {
                 error++;
+                Console.WriteLine(e);
             }
 
 
